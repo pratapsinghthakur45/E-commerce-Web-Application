@@ -1,0 +1,90 @@
+E-Commerce paltform application
+what?
+
+application functionlaties
+1. user have option login and signup with google or email and password
+1.1 user also have option to login with otp by email or phone number
+1.2 if user forget his password than one option for forget password reset password
+2. user see all the prodcut on his home page and search project what he want and have filtters for specifice type of project
+3. user manage his profile and have option to change in his details and change password
+4. user have option to add prodcut in his cart
+5. user have option to buy prodcut and pay through online payment or cash on delivery
+6. admin only have access to add ,update ,edit and remove prodcut
+7. user add and remove prodcut from cart
+8. have payment option on this platform by multiple option he have
+9. user have see all his history of prodcut he buy
+
+Models
+1. User Model 
+2. Product Model
+3. Orders Model
+
+
+Routes
+1. Authentication
+user - Post /signup - user signup by his details
+       Post /login - user login using email and password 
+       Post /forgetPassword - user sent email for reset password
+       Post /login/emailOrMobNo - user login with otp verification
+       Post /password/reset - user reset his passwor via receive email
+2. Home page
+user - Get /home - user see home page with some prodcut and have serch option with filtter
+3. Profile
+user - Get /profile - he see his profile 
+user - Put /prfile/field - change his detail what he want
+user - Put /profile/password - change his password
+4.Prodcut
+user - Get /prodcut - see product list
+       Get /prodcut/productId - see one product all details
+5.Buy
+       Post /prodcut/buy/productId - buy prodcut
+6.Cart
+       Get /prodcut/cart - list of prodcut in cart
+       Post /prodcut/cart/itemAdd/:prodcutId - add item in cart
+       Put  /prodcut/cart/itemRemove/:prodcutid - remove item in cart
+7.Prodcut management
+admin  Post /prodcuts/
+       Put /prodcuts/:prodcutId
+       Delete /prodcuts/:productId
+8.Orders
+user - Post - /order/:productId
+        Get - /order
+
+
+
+1️⃣ Authentication
+POST /signup                    → user signup
+POST /login                     → user login (email + password)
+POST /login/otp                 → login with OTP (email or mobile)
+POST /password/forgot           → send reset password email
+POST /password/reset            → reset password using token
+
+GET /auth/google              → Redirect to Google login
+GET /auth/google/callback     → Google callback, verify, create JWT
+
+2️⃣ Products (User)
+GET /products                   → get all products (search & filter via query)
+GET /products/:productId        → get single product details
+
+3️⃣ Profile
+GET /profile                    → view user profile
+PUT /profile                    → update user details
+PUT /profile/password           → change password
+
+4️⃣ Cart
+GET /cart                       → view cart
+POST /cart/:productId           → add product to cart
+PUT /cart/:productId            → update/remove product from cart
+
+5️⃣ Orders / Buy / Payment
+POST /orders                    → Place order (cart or single product) + payment type
+GET /orders                     → Get user order history
+PUT /orders/:orderId/payment    → Update payment status (success/failed)
+
+
+6️⃣ Product Management (Admin)
+POST /products                  → add product
+PUT /products/:productId        → update product
+DELETE /products/:productId     → delete product
+
+
