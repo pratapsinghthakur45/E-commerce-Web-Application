@@ -53,8 +53,8 @@ user - Post - /order/:productId
 
 
 1️⃣ Authentication
-POST /signup                    → user signup
-POST /login                     → user login (email + password)
+POST /signup  (DONE)                  → user signup
+POST /login     (DONE)                 → user login (email + password)
 POST /login/otp                 → login with OTP (email or mobile)
 POST /password/forgot           → send reset password email
 POST /password/reset            → reset password using token
@@ -67,9 +67,9 @@ GET /products                   → get all products (search & filter via query)
 GET /products/:productId        → get single product details
 
 3️⃣ Profile
-GET /profile                    → view user profile
-PUT /profile                    → update user details
-PUT /profile/password           → change password
+GET /profile     (DONE)                → view user profile
+PUT /profile    (DONE)                 → update user details
+PUT /profile/password (DONE)           → change password
 
 4️⃣ Cart
 GET /cart                       → view cart
@@ -88,4 +88,3 @@ PUT /products/:productId        → update product
 DELETE /products/:productId     → delete product
 
 
-hello

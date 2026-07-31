@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 const jwtAuth = (req,res,next) => {
-     const authHeader = req.headers.authrization;
+     const authHeader = req.headers.authorization;
 
      if(!authHeader){
         return res.status(401).json({message:'Token Missing'});

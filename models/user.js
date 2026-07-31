@@ -64,6 +64,13 @@ const userSchema = new mongoose.Schema({
         enum:['user','admin'],
         default:'user',
     },
+    otp: {
+        type: String,
+    },
+    otpExpires: {
+       type: Date,
+    },
+
     // cart:[{
     //     productId:{
     //         type:mongoose.Schema.Types.ObjectId,
@@ -78,6 +85,12 @@ const userSchema = new mongoose.Schema({
     // }],
     
 },{timestamps:true});
+
+//comapre password function
+userSchema.methods.comparePassword = async function(enteredPassword) {
+   return await bcrypt.compare(enteredPassword, this.password);
+}
+
 
 const User = mongoose.model('User',userSchema);
 

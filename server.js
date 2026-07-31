@@ -11,12 +11,18 @@ app.use(express.json());
 //user routes import
 import userRoutes from "./routes/userRoutes.js";
 
+//product routes import
+import productRoutes from "./routes/productRoutes.js";
+
 app.get('/',(req,res)=>{
     res.send("E-Commerce Platform");
 });
 
 //user routes
 app.use('/user',userRoutes);
+
+//product routes
+app.use('/user',productRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{
