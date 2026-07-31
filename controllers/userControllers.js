@@ -117,7 +117,7 @@ export const loginWithOTP = async (req,res) =>{
      }
 }
 
-//user profile data
+//user get his profile data
 export const profile = async (req,res) =>{
    try{
         const userData = req.user;
@@ -130,6 +130,7 @@ export const profile = async (req,res) =>{
     }
 }
 
+//user change his profile data
 export const updateProfile = async (req,res) =>{
    try {
           const userData = req.user;
@@ -155,7 +156,7 @@ export const updateProfile = async (req,res) =>{
 }
 
 
-
+//user change his password
 export const changePassword = async (req, res) => {
   try {
     const userId = req.user.id;
