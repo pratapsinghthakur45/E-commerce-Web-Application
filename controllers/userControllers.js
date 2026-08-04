@@ -8,6 +8,7 @@ import OTP from '../models/otp.js';
 // SIGNUP CONTROLLER
  export const signup = async (req, res) => {
   try {
+    console.log("signup called:");
     const data = req.body;
 
     // check if user already exists
