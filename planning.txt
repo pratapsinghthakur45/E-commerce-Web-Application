@@ -89,3 +89,67 @@ PUT /products/:productId        → update product
 DELETE /products/:productId     → delete product
 
 
+==================================================
+        E-COMMERCE BACKEND API ROUTES
+==================================================
+
+1. AUTHENTICATION
+-----------------
+POST   /signup
+POST   /login
+POST   /login/otp
+POST   /password/forgot
+POST   /password/reset
+
+GET    /auth/google
+GET    /auth/google/callback
+
+
+2. PRODUCTS — USER
+------------------
+GET    /products
+GET    /products/:productId
+
+
+3. PROFILE
+----------
+GET    /profile
+PUT    /profile
+PUT    /profile/password
+DELETE /profile
+
+
+4. CART
+-------
+GET    /cart
+POST   /cart/:productId
+PUT    /cart/:productId
+DELETE /cart/:productId
+DELETE /cart
+
+
+5. ORDERS
+---------
+POST   /orders
+GET    /orders
+GET    /orders/:orderId
+
+
+6. PAYMENTS
+-----------
+POST   /payments/create
+POST   /payments/verify
+
+
+7. ADMIN — PRODUCT MANAGEMENT
+-----------------------------
+POST   /products
+PUT    /products/:productId
+DELETE /products/:productId
+
+
+8. ADMIN — ORDER MANAGEMENT
+---------------------------
+GET    /admin/orders
+GET    /admin/orders/:orderId
+PUT    /admin/orders/:orderId/status
