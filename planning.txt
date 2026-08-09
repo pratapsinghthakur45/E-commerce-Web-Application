@@ -18,6 +18,7 @@ Models
 1. User Model 
 2. Product Model
 3. Orders Model
+4. Cart Model
 
 
 Routes

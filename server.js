@@ -17,6 +17,9 @@ import productRoutes from "./routes/productRoutes.js";
 //cart routes import
 import cartRoutes from "./routes/cartRoutes.js";
 
+//order orutes import
+import orderRoutes from "./routes/orderRoutes.js";
+
 app.get('/',(req,res)=>{
     res.send("E-Commerce Platform");
 });
@@ -29,6 +32,9 @@ app.use('/user',productRoutes);
 
 //cart routes
 app.use('/user',cartRoutes);
+
+//order routes
+app.use('/user',orderRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{

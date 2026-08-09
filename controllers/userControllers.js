@@ -147,7 +147,7 @@ export const updateProfile = async (req,res) =>{
           // update user data
           const response = await User.findByIdAndUpdate(userId,data,{
               new:true,//data updated
-              runValidators:true,
+              
           });
           res.status(200).json({response:response});
 
