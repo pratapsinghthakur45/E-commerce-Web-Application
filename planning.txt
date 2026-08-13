@@ -153,3 +153,47 @@ DELETE /products/:productId
 GET    /admin/orders
 GET    /admin/orders/:orderId
 PUT    /admin/orders/:orderId/status
+
+
+Your current project status
+
+AUTH
+├── POST /signup                         ✅
+├── POST /login                          ✅
+├── OTP login                            ⏳
+├── Forgot password                      ⏳
+├── Reset password                       ⏳
+└── Google login                         ⏳
+
+PRODUCTS
+├── GET /products                        ✅
+├── GET /products/:productId             ✅
+├── POST /products                       ✅ Admin
+├── PUT /products/:productId             ✅ Admin
+└── DELETE /products/:productId           ✅ Admin
+
+PROFILE
+├── GET /profile                         ✅
+├── PUT /profile                         ✅
+└── PUT /profile/password                ✅
+
+CART
+├── GET /cart                            ✅
+├── POST /cart/:productId                ✅
+├── PUT /cart/:productId                 ✅
+├── DELETE /cart/:productId              ✅
+└── DELETE /cart                         ⏳/Optional
+
+ORDERS
+├── POST /orders                         ✅
+├── GET /orders                          ✅
+└── GET /orders/:orderId                 ✅
+
+ADMIN ORDERS
+├── GET /admin/orders                    ✅
+├── GET /admin/orders/:orderId           ✅
+└── PUT /admin/orders/:orderId/status   ✅
+
+PAYMENT
+├── Razorpay                             ⏳
+└── Payment verification                 ⏳

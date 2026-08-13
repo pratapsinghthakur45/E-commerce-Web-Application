@@ -1,4 +1,5 @@
 import Order from "../models/order.js";
+import Product from "../models/product.js";
 
 // Place Order
 export const placeOrder = async (req, res) => {
@@ -82,14 +83,20 @@ export const placeOrder = async (req, res) => {
 //get all order history
 export const orders = async (req,res) => {
      try {
-        if(!req.user){
+        let user = req.user;
+        if(!user){
             return res.status(401).json({message:"unauthorized:"});
         }
+        const userId = req.user.id;
+        user = await Order.findOne({user:userId});
 
-        const order = await Order.find();
+        if(!user){
+            return res.status(404).json({message:"User Order Not Found:"});
+        }
+        const userOrders = await Order.find({user:userId});
         
 
-        return res.status(200).json({message:"All Orders fetched successfully:" ,order:order});
+        return res.status(200).json({message:"All User Orders fetched successfully:" ,order:userOrders});
 
 
     } catch (error) {
@@ -99,11 +106,17 @@ export const orders = async (req,res) => {
 }
 
 
-//get product
+//get one order details
 export const order = async (req,res)=>{
     try {
         if(!req.user){
             return res.status(401).json({message:"unauthorized:"});
+        }
+        const userId = req.user.id;
+        const user = await Order.findOne({user:userId});
+
+        if(!user){
+            return res.status(404).json({message:"User Order Not Found:"});
         }
         const orderId = req.params.id;
 
@@ -119,5 +132,91 @@ export const order = async (req,res)=>{
     } catch (error) {
         console.log(error);
         res.status(500).json({message:"Internal Server Error:"});
+    }
+}
+
+//get admin orders
+export const adminOrders = async (req,res) => {
+    try {
+        const user = req.user;
+
+        //user logged in or not
+        if(!user){
+            return res.status(401).json({message:"Unauthrized:"});
+        }
+
+        //checking user is have admin role or not
+        if(user.role !== 'admin'){
+            return res.status(403).json({message:"Unauthorized"});
+        }
+
+        const order = await Order.find();
+
+        return res.status(200).json({message:"Orders fetched successfully:",order});
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:"Internal Server Error:"});
+    }
+}
+
+//get one orders details
+export const adminOneOrderDetails = async (req,res) => {
+      try {
+        const user = req.user;
+      if(!user){
+        return res.status(401).json({message:"Unauthorized:"});
+      }
+
+      if(user.role !== 'admin'){
+        return res.status(403).json({message:"Unauthorized:"});
+      }
+
+      const orderId = req.params.id;
+
+      const order = await Order.findById(orderId);
+
+      if(!order){
+        return res.status(404).json({message:"Order not found:"})
+      }
+      return res.status(200).json({message:"Order details:",order});
+      } catch (error){
+        console.log(error);
+        return res.status(500).json({message:"Internal Server Error:"});
+      }
+}
+
+//admin status change of order
+export const statusChange = async (req,res) => {
+   try {
+    const user = req.user;
+      if(!user){
+        return res.status(401).json({message:"Unauthorized:"});
+      }
+
+      if(user.role !== 'admin'){
+        return res.status(403).json({message:"Unauthorized:"});
+      }
+
+      const orderId = req.params.id;
+      
+
+      const order = await Order.findById(orderId);
+
+      if(!order){
+        return res.status(404).json({message:"Order not found:",order})
+      }
+
+      const{status} = req.body;
+
+      const response = await Order.findByIdAndUpdate(orderId,{status:status},{
+        new:true,
+        runValidators: true
+      });
+
+      return res.status(200).json({message:"Update Order Status:",response});
+    } catch (error){
+        console.log(error);
+        return res.status(500).json({message:"Internal Sever Error"});
     }
 }
